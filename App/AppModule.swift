@@ -14,5 +14,8 @@ public class AppModule: Module {
 
     public func registerServices() {
         GlobalContainer.defaultContainer.register(ForecastNetworkService.self) { _ in ForecastNetworkServiceImpl() }
+        GlobalContainer.defaultContainer.register(ForecastService.self) { r in
+            ForecastServiceImpl(forecastNetorkService: r.resolve(ForecastNetworkService.self)!)
+        }
     }
 }

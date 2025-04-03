@@ -14,8 +14,10 @@ class ListViewCoordinator {
     public func start(window: UIWindow) {
         let viewModel = ListViewModel()
 
-        // TODO
-        //  viewModel.showDetail =
+        viewModel.showDetail = { forecastItem in
+            guard let navigationController = self.navigationController else { return }
+            DetailViewCoordinator().start(navigationController: navigationController, forecastItem: forecastItem)
+        }
 
         let viewController = ListViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
